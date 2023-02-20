@@ -14,7 +14,7 @@
         </el-form-item>
         <el-form-item>
           <el-button class="btn-reg" type="primary" @click="registerFn">注册</el-button>
-          <el-link type="info">去登录</el-link>
+          <el-link type="info" @click="$router.push('/login')">去登录</el-link>
         </el-form-item>
       </el-form>
     </div>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { registerAPI } from '@/api'
 export default {
   name: 'my-register',
   data () {
@@ -58,10 +59,15 @@ export default {
   methods: {
     registerFn () {
       // 兜底校验
-      this.$refs.form.validate(valid => {
+      this.$refs.form.validate(async valid => {
         if (valid) {
           // 通过校验
           console.log(this.form)
+          const { data: res } = await registerAPI(this.form)
+          console.log(res)
+          if (res.code !== 0) return this.$message.error(res.message)
+          this.$message.success(res.message)
+          this.$router.push('/login')
         } else {
           return false // 阻止默认提交行为
         }
