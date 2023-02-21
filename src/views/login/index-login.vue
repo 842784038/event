@@ -54,6 +54,7 @@ export default {
           // 成功
           this.$message.success(res.message)
           this.updateToken(res.token)
+          this.$router.push('/')
         } else {
           return false
         }
