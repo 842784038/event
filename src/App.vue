@@ -5,17 +5,15 @@
 </template>
 
 <script>
-import { registerAPI } from '@/api'
+// import { getUserInFoAPI } from '@/api'
 export default {
-  async created () {
-    const res = await registerAPI()
-    console.log(res)
+  created () {
   }
 }
 </script>
 
 <style lang="less" scoped>
 div{
-  height: 850px;
+  height: 920px;
 }
 </style>
