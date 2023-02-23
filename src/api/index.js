@@ -1,5 +1,4 @@
 import request from '@/utils/request'
-import store from '@/store'
 export const registerAPI = ({ username, password, repassword }) => {
   return request({
     url: '/api/reg',
@@ -23,17 +22,11 @@ export const loginAPI = ({ username, password }) => {
 }
 export const getUserInFoAPI = () => {
   return request({
-    url: 'my/userinfo',
-    headers: {
-      Authorization: store.state.token
-    }
+    url: 'my/userinfo'
   })
 }
 export const getMenusListAPI = () => {
   return request({
-    url: 'my/menus',
-    headers: {
-      Authorization: store.state.token
-    }
+    url: 'my/menus'
   })
 }
