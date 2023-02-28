@@ -5,7 +5,15 @@ import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: () => import('@/views/layout/index.vue') },
+  {
+    path: '/',
+    component: () => import('@/views/layout/index.vue'),
+    redirect: '/home',
+    children: [
+      { path: 'home', component: () => import('@/views/home/index.vue') },
+      { path: 'user-info', component: () => import('@/views/user/userInfo.vue') }
+    ]
+  },
   {
     path: '/reg',
     component: () => import('@/views/register/index-register.vue')

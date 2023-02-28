@@ -30,3 +30,16 @@ export const getMenusListAPI = () => {
     url: 'my/menus'
   })
 }
+export const updateUserInfoAPI = ({ id, username, nickname, email, user_pic }) => {
+  return request({
+    url: 'my/userinfo',
+    method: 'PUT',
+    data: {
+      id,
+      username,
+      nickname,
+      email,
+      user_pic
+    }
+  })
+}
