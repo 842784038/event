@@ -9,22 +9,22 @@
       :rules="userFormRules"
       label-width="100px"
     >
-      <el-form-item prop="username">
+      <el-form-item prop="username" label="登录名称">
         <el-input
           placeholder="登录名称"
           v-model="userForm.username"
           disabled
         ></el-input>
       </el-form-item>
-      <el-form-item prop="nickname">
+      <el-form-item prop="nickname" label="用户昵称">
         <el-input placeholder="用户昵称" v-model="userForm.nickname"></el-input>
       </el-form-item>
-      <el-form-item prop="email">
+      <el-form-item prop="email" label="用户邮箱">
         <el-input placeholder="用户邮箱" v-model="userForm.email"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitFn">提交修改</el-button>
-        <el-button>重置</el-button>
+        <el-button @click= 'resetFn'>重置</el-button>
       </el-form-item>
     </el-form>
   </el-card>
@@ -67,12 +67,15 @@ export default {
           const { data: res } = await updateUserInfoAPI(this.userForm)
           if (res.code !== 0) return this.$message.error('更新用户信息失败')
           this.$message.success('更新成功')
-          // 重新跟新一下vuex的数据
-          this.$store.dispatch('initUserInfo')
+          // 重新更新一下vuex的数据
+          this.$store.dispatch('getUserInfoActions')
         } else {
           return false
         }
       })
+    },
+    resetFn () {
+      this.$refs.userFormRef.resetFields()
     }
   },
   created () {},
